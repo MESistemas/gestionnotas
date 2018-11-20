@@ -88,4 +88,11 @@ public class alumnosController {
 
         return "/secciones/alumnos";
     }
+    
+    @GetMapping("/secciones/formulario_alumno")
+    public String agregar(){
+        
+        return "/secciones/formulario_alumno";
+    }
+    
 }

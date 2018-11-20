@@ -39,12 +39,10 @@ insert into alumnos(nombre,apellido,dni,genero,fecha_Nacimiento,fk_Alu_Cur) valu
 ('Eugenia', 'Toledo', '25329324', 'F', '05/12/1996',2);
 
 insert into materias(nombre_Materia, fk_Mat_Pro) values
-('Informática I', 1),
-('Informática II', 1);
+('Informática I', 1);
 
 insert into calendarios_de_Materias(titulo, descripcion, fecha, fk_Cal_Mat) values
-('Inicio de Clases', 'Comienzo 1er Trimestre', '04/03/2019', 1),
-('Inicio de Clases', 'Comienzo 1er Trimestre', '05/03/2019', 2);
+('Inicio de Clases', 'Comienzo 1er Trimestre', '04/03/2019', 1);
 
 
 select * from cursos;
