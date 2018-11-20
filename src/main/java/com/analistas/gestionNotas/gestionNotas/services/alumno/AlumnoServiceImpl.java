@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.analistas.gestionNotas.gestionNotas.services;
+package com.analistas.gestionNotas.gestionNotas.services.alumno;
 
-import com.analistas.gestionNotas.gestionNotas.dao.IAlumnoDao;
-import com.analistas.gestionNotas.gestionNotas.models.entitys.Alumno;
-import com.analistas.gestionNotas.gestionNotas.models.entitys.Curso;
+import com.analistas.gestionNotas.gestionNotas.services.alumno.IAlumnoService;
+import com.analistas.gestionNotas.gestionNotas.dao.iAlumno.IAlumnoDao;
+import com.analistas.gestionNotas.gestionNotas.models.entitys.alumno.Alumno;
+import com.analistas.gestionNotas.gestionNotas.models.entitys.curso.Curso;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
@@ -47,11 +48,13 @@ public class AlumnoServiceImpl implements IAlumnoService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Alumno> buscarPorCurso(Curso curso) {
         return dao.buscarPorCurso(curso);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Alumno> buscarPorDni(String dni, Curso curso) {
         return dao.buscarPorDni(dni, curso);
     }

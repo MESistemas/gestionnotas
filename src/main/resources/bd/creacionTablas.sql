@@ -32,7 +32,7 @@ create table alumnos(
     apellido varchar(25) not null,
     dni varchar(8) not null,
     genero varchar(1) not null, 
-    fecha_Nacimiento date not null
+    fecha_Nacimiento varchar(10) not null
 );
 
 create table profesores(
@@ -41,7 +41,7 @@ create table profesores(
     apellido varchar(25) not null,
     dni varchar(8) not null,
     genero varchar(1) not null, 
-    fecha_Nacimiento date not null
+    fecha_Nacimiento varchar(10) not null
 );
 
 create table usuarios(
@@ -73,6 +73,6 @@ create table calendarios_de_Materias(
 	id int not null primary key auto_increment,
     titulo varchar(20) not null,
     descripcion varchar(30) not null,
-    fecha date
+    fecha varchar(10) not null
 );
 

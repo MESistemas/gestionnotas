@@ -3,13 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.analistas.gestionNotas.gestionNotas.models.entitys;
+package com.analistas.gestionNotas.gestionNotas.models.entitys.alumno;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import com.analistas.gestionNotas.gestionNotas.models.entitys.curso.Curso;
+import com.analistas.gestionNotas.gestionNotas.models.entitys.MateriaAlumno.Materia_Alumno;
+import com.analistas.gestionNotas.gestionNotas.models.entitys.usuario.Usuario;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -61,11 +64,9 @@ public class Alumno {
     @NotNull
     private String genero;
 
-    @Column(name = "fecha_Nacimiento")
+    @Column(name = "fecha_Nacimiento", length = 10)
     @NotNull
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    @Temporal(TemporalType.DATE)
-    private Date fecha_Nacimiento;
+    private String fecha_Nacimiento;
 
     public int getId() {
         return id;
@@ -107,11 +108,11 @@ public class Alumno {
         this.genero = genero;
     }
 
-    public Date getFecha_Nacimiento() {
+    public String getFecha_Nacimiento() {
         return fecha_Nacimiento;
     }
 
-    public void setFecha_Nacimiento(Date fecha_Nacimiento) {
+    public void setFecha_Nacimiento(String fecha_Nacimiento) {
         this.fecha_Nacimiento = fecha_Nacimiento;
     }
 

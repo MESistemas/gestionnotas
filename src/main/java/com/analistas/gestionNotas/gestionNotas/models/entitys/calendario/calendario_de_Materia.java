@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.analistas.gestionNotas.gestionNotas.models.entitys;
+package com.analistas.gestionNotas.gestionNotas.models.entitys.calendario;
 
+import com.analistas.gestionNotas.gestionNotas.models.entitys.materia.Materia;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +17,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -38,10 +43,9 @@ public class calendario_de_Materia {
     @NotNull
     private String descripcion;
 
-    @Column(name = "fecha")
+    @Column(name = "fecha", length = 10)
     @NotNull
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date fecha;
+    private String fecha;
 
     @ManyToOne
     @JoinColumn(name = "fk_Cal_Mat", referencedColumnName = "id")
@@ -71,11 +75,11 @@ public class calendario_de_Materia {
         this.descripcion = descripcion;
     }
 
-    public Date getFecha() {
+    public String getFecha(){
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

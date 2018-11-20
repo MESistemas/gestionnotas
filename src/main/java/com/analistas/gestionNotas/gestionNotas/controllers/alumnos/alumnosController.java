@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.analistas.gestionNotas.gestionNotas.controllers;
+package com.analistas.gestionNotas.gestionNotas.controllers.alumnos;
 
-import com.analistas.gestionNotas.gestionNotas.dao.IAlumnoDao;
-import com.analistas.gestionNotas.gestionNotas.models.entitys.Alumno;
-import com.analistas.gestionNotas.gestionNotas.models.entitys.Curso;
-import com.analistas.gestionNotas.gestionNotas.services.IAlumnoService;
-import com.analistas.gestionNotas.gestionNotas.services.ICursoService;
+import com.analistas.gestionNotas.gestionNotas.dao.iAlumno.IAlumnoDao;
+import com.analistas.gestionNotas.gestionNotas.models.entitys.alumno.Alumno;
+import com.analistas.gestionNotas.gestionNotas.models.entitys.curso.Curso;
+import com.analistas.gestionNotas.gestionNotas.services.alumno.IAlumnoService;
+import com.analistas.gestionNotas.gestionNotas.services.curso.ICursoService;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +45,7 @@ public class alumnosController {
     private Curso curso;
 
     //Acá es donde yo recibo el Curso.id que paso desde "elegir_curso"
-    @RequestMapping(value = "/alumnos/{curso}", method = RequestMethod.GET)
+    @RequestMapping(value = "/secciones/alumnos/{curso}", method = RequestMethod.GET)
     public String listarPorCurso(Map<String, Object> m, @PathVariable("curso") Curso curso) {
         List<Alumno> listado = servAlumno.buscarPorCurso(curso);
 
@@ -55,20 +55,20 @@ public class alumnosController {
         m.put("curso", curso.getId());
         m.put("nombreCurso", curso);
 
-        return "alumnos";
+        return "/secciones/alumnos";
     }
 
-    @GetMapping({"/elegir_curso"})
+    @GetMapping({"/secciones/elegir_curso"})
     public String elegir_cursoController(Map<String, Object> m) {
 
         List<Curso> listado = servCurso.buscarTodo();
 
         m.put("cursos", listado);
 
-        return "elegir_curso";
+        return "/secciones/elegir_curso";
     }
 
-    @GetMapping("/buscar")
+    @GetMapping("/secciones/busqueda_alumno_por_dni")
     public String buscar(@RequestParam(name = "dni", required = false) String dni, Map m) {
 
         List<Alumno> listado = servAlumno.buscarPorDni(dni, curso);
@@ -86,6 +86,6 @@ public class alumnosController {
         m.put("curso", curso.getId());
         m.put("nombreCurso", curso);
 
-        return "alumnos";
+        return "/secciones/alumnos";
     }
 }

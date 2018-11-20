@@ -1,4 +1,4 @@
-package com.analistas.gestionNotas.gestionNotas.controllers;
+package com.analistas.gestionNotas.gestionNotas.controllers.index;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,7 +24,7 @@ public class indexController {
         
         m.put("fecha", fecha);
         
-        return "index";
+        return "/index";
     }
     
 }

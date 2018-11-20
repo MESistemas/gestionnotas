@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.analistas.gestionNotas.gestionNotas.models.entitys;
+package com.analistas.gestionNotas.gestionNotas.models.entitys.profesor;
 
+import com.analistas.gestionNotas.gestionNotas.models.entitys.usuario.Usuario;
+import com.analistas.gestionNotas.gestionNotas.models.entitys.materia.Materia;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -51,10 +53,9 @@ public class Profesor implements Serializable {
     @NotNull
     private String genero;
 
-    @Column(name = "fecha_Nacimiento")
+    @Column(name = "fecha_Nacimiento", length = 10)
     @NotNull
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date fecha_Nacimiento;
+    private String fecha_Nacimiento;
 
     public int getId() {
         return id;
@@ -96,11 +97,11 @@ public class Profesor implements Serializable {
         this.genero = genero;
     }
 
-    public Date getFecha_Nacimiento() {
+    public String getFecha_Nacimiento() {
         return fecha_Nacimiento;
     }
 
-    public void setFecha_Nacimiento(Date fecha_Nacimiento) {
+    public void setFecha_Nacimiento(String fecha_Nacimiento) {
         this.fecha_Nacimiento = fecha_Nacimiento;
     }
     

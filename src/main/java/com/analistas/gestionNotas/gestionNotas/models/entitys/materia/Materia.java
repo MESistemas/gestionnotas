@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.analistas.gestionNotas.gestionNotas.models.entitys;
+package com.analistas.gestionNotas.gestionNotas.models.entitys.materia;
 
+import com.analistas.gestionNotas.gestionNotas.models.entitys.MateriaAlumno.Materia_Alumno;
+import com.analistas.gestionNotas.gestionNotas.models.entitys.profesor.Profesor;
+import com.analistas.gestionNotas.gestionNotas.models.entitys.calendario.calendario_de_Materia;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -95,5 +98,12 @@ public class Materia implements Serializable {
     public void setCalendarios(List<calendario_de_Materia> calendarios) {
         this.calendarios = calendarios;
     }
+
+    @Override
+    public String toString() {
+        return nombre_Materia;
+    }
+    
+    
 
 }

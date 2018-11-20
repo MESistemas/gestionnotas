@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.analistas.gestionNotas.gestionNotas.dao;
+package com.analistas.gestionNotas.gestionNotas.dao.iAlumno;
 
-import com.analistas.gestionNotas.gestionNotas.models.entitys.Alumno;
-import com.analistas.gestionNotas.gestionNotas.models.entitys.Curso;
+import com.analistas.gestionNotas.gestionNotas.models.entitys.alumno.Alumno;
+import com.analistas.gestionNotas.gestionNotas.models.entitys.curso.Curso;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

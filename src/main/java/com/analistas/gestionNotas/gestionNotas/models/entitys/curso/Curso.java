@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.analistas.gestionNotas.gestionNotas.models.entitys;
+package com.analistas.gestionNotas.gestionNotas.models.entitys.curso;
 
+import com.analistas.gestionNotas.gestionNotas.models.entitys.division.Division;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -28,25 +29,36 @@ import org.springframework.format.annotation.DateTimeFormat;
  * @author matia
  */
 @Entity
-@Table(name = "divisiones")
-public class Division {
+@Table(name = "cursos")
+public class Curso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
-    @Column(name = "nombre_Division")
+    @Column(name = "nombre_Curso")
     @Size(max = 1)
     @NotNull
-    private String nombre_Division;
+    private String nombre_Curso;
+    
+    @Column(name = "cantidad_Alumnos")
+    @NotNull
+    private int cantidadAlumnos;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "division")
-    private List<Curso> cursos;
-
-    public void addCurso(Curso cursos) {
-        this.cursos.add(cursos);
+    public int getCantidadAlumnos() {
+        return cantidadAlumnos;
     }
+
+    public void setCantidadAlumnos(int cantidadAlumnos) {
+        this.cantidadAlumnos = cantidadAlumnos;
+    }
+    
+    
+
+    @ManyToOne
+    @JoinColumn(name = "fk_Cur_Div", referencedColumnName = "id")
+    private Division division;
 
     public int getId() {
         return id;
@@ -56,26 +68,28 @@ public class Division {
         this.id = id;
     }
 
-    public String getNombre_Division() {
-        return nombre_Division;
+    public String getNombre_Curso() {
+        return nombre_Curso;
     }
 
-    public void setNombre_Division(String nombre_Division) {
-        this.nombre_Division = nombre_Division;
+    public void setNombre_Curso(String nombre_Curso) {
+        this.nombre_Curso = nombre_Curso;
     }
 
-    public List<Curso> getCursos() {
-        return cursos;
+    public Division getDivision() {
+        return division;
     }
 
-    public void setCursos(List<Curso> cursos) {
-        this.cursos = cursos;
+    public void setDivision(Division division) {
+        this.division = division;
     }
 
     @Override
     public String toString() {
-        return nombre_Division;
+        return nombre_Curso + division;
     }
+
+   
     
     
 
