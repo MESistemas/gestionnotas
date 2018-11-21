@@ -41,20 +41,6 @@ public class Curso {
     @Size(max = 1)
     @NotNull
     private String nombre_Curso;
-    
-    @Column(name = "cantidad_Alumnos")
-    @NotNull
-    private int cantidadAlumnos;
-
-    public int getCantidadAlumnos() {
-        return cantidadAlumnos;
-    }
-
-    public void setCantidadAlumnos(int cantidadAlumnos) {
-        this.cantidadAlumnos = cantidadAlumnos;
-    }
-    
-    
 
     @ManyToOne
     @JoinColumn(name = "fk_Cur_Div", referencedColumnName = "id")

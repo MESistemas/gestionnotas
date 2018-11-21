@@ -13,7 +13,11 @@ import java.util.List;
  * @author matia
  */
 public interface ICursoService {
-    
+
     public List<Curso> buscarTodo();
-    
+
+    public Curso buscarPorId(int id);
+
+    public void save(Curso curso);
+
 }

@@ -47,8 +47,8 @@
                         <span>Secciones</span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                        <a class="dropdown-item active" th:href="@{/secciones/elegir_curso}"><i class="fas fa-chalkboard"></i> Cursos</a>
-                        <a class="dropdown-item" th:href="@{/secciones/materias}"><i class="fas fa-book"></i> Materias</a>
+                        <a class="dropdown-item" th:href="@{/secciones/cursos}"><i class="fas fa-chalkboard"></i> Cursos</a>
+                        <a class="dropdown-item active" th:href="@{/secciones/materias}"><i class="fas fa-book"></i> Materias</a>
                         <a class="dropdown-item" href="login.html"><i class="far fa-calendar-alt"></i> Calendario</a>
                         <a class="dropdown-item" href="login.html"><i class="fas fa-archive"></i> Recursos</a>
                     </div>
@@ -68,9 +68,9 @@
                     <!-- Breadcrumbs-->
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a th:href="@{/secciones/elegir_curso}">Cursos</a>
+                            <a th:href="@{/secciones/materias}">Materias</a>
                         </li>
-                        <li class="breadcrumb-item active">Lista de Cursos</li>
+                        <li class="breadcrumb-item active">Formulario</li>
                     </ol>
 
                     <!-- Icon Cards -->
@@ -81,37 +81,40 @@
                     <!-- DataTables Example -->
                     <div class="card mb-3">
                         <div class="card-header">
-                            <i class="fas fa-chalkboard"></i>
-                            Cursos</div>
+                            <b ></b></div>
                         <div class="card-body">
-
-                            <table class="table table-sm table-hover table-responsive-md text-center">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Nro Curso</th>
-                                        <th scope="col">División</th>
-                                        <th scope="col">Alumnos</th>
-                                        <th scope="col">Ver Alumnos</th>
-                                        <th scope="col">Editar</th>
-                                        <th scope="col">Borrar</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr th:each="c : ${cursos}">
-                                        <th scope="row" th:text="${c.id}"></th>
-                                        <td th:text="${c.nombre_Curso}"></td>
-                                        <td th:text="${c.Division}"></td>
-                                        <td th:text="${c.cantidadAlumnos}"></td>
-
-                                        <!-- Desde acá le paso el Curso.id al Controllador -->
-                                        <td><a class="btn btn-outline-success" th:href="@{/secciones/alumnos/} + ${c.id}"><i class="far fa-eye"></i> Alumnos</a></td>
-
-                                        <td><button type="button" class="btn btn-outline-info"><i class="far fa-edit"></i> Editar</button></td>
-                                        <td><button type="button" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i> Borrar</button></td>
-                                    </tr>
-                                </tbody>
-                            </table> 
+                            <form th:action="@{/secciones/formulario_calendario}" th:object="${calendario}" method="post">
+                                <h5> <i class="far fa-clipboard"></i>  Datos del Evento </h5>
+                                <br>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="far fa-calendar"></i> Titulo: 
+                                        <input type="text" class="form-control" th:field="*{titulo}" required>
+                                    </div>
+                                    <div class="col">
+                                        <i class="far fa-calendar-alt"></i> Fecha: 
+                                        <input type="text" class="form-control" th:field="*{fecha}" required>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col">
+                                            <i class="far fa-calendar-plus"></i> Descripción: 
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    </div>
+                                     <div class="col">
+                                        <i class="fas fa-book"></i> Materia: 
+                                        <input type="text" class="form-control" th:value="${materia}" disabled>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col">
+                                        <button type="submit" class="btn btn-success"> <i class="fas fa-save"></i> Guardar </button>
+                                        <a class="btn btn-danger" th:href="@{/secciones/materias}"> <i class="fas fa-times"></i> Cancelar</a>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                         <div class="card-footer small text-muted"></div>
                     </div>
@@ -123,7 +126,7 @@
                 <footer class="sticky-footer">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
-                            <span>Todos los derechos reservados © ME-Sistemas 2018</span>
+                            <span>Copyright © Your Website 2018</span>
                         </div>
                     </div>
                 </footer>

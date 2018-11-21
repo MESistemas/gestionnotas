@@ -47,8 +47,8 @@
                         <span>Secciones</span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                        <a class="dropdown-item" th:href="@{/secciones/cursos}"><i class="fas fa-chalkboard"></i> Cursos</a>
-                        <a class="dropdown-item active" th:href="@{/secciones/materias}"><i class="fas fa-book"></i> Materias</a>
+                        <a class="dropdown-item active" th:href="@{/secciones/cursos}"><i class="fas fa-chalkboard"></i> Cursos</a>
+                        <a class="dropdown-item" th:href="@{/secciones/materias}"><i class="fas fa-book"></i> Materias</a>
                         <a class="dropdown-item" href="login.html"><i class="far fa-calendar-alt"></i> Calendario</a>
                         <a class="dropdown-item" href="login.html"><i class="fas fa-archive"></i> Recursos</a>
                     </div>
@@ -68,9 +68,9 @@
                     <!-- Breadcrumbs-->
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a th:href="@{/secciones/materias}">Materias</a>
+                            <a th:href="@{/secciones/cursos}">Cursos</a>
                         </li>
-                        <li class="breadcrumb-item active">Calendario</li>
+                        <li class="breadcrumb-item active">Lista de Cursos</li>
                     </ol>
 
                     <!-- Icon Cards -->
@@ -79,33 +79,40 @@
                     </div>
 
                     <!-- DataTables Example -->
-                    <div class="card mb-1">
+                    <div class="card mb-3">
                         <div class="card-header">
-                            <i class="far fa-calendar-alt"></i>
-                            Calendario de <b th:text="${materia}"></b></div>
+                            <i class="fas fa-chalkboard"></i>
+                            Cursos</div>
                         <div class="card-body">
 
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-6" th:each="c : ${calendarios}">
-                                        <div class="card text-center">
-                                            <div class="card-header">
-                                                <i class="fas fa-calendar-alt"></i> <b th:text="${c.fecha}"></b>
-                                            </div>
-                                            <div class="card-body">
-                                                <h5 class="card-title" th:text="${c.titulo}"></h5>
-                                                <p class="card-text" th:text="${c.descripcion}"></p>
-                                                <a href="#" class="btn btn-primary">Modificar</a>
-                                                <a href="#" class="btn btn-danger">Borrar</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <table class="table table-sm table-hover table-responsive-md text-center table-bordered">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nro Curso</th>
+                                        <th scope="col">División</th>
+                                        <th scope="col">Ver Alumnos</th>
+                                        <th scope="col">Editar</th>
+                                        <th scope="col">Borrar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="c : ${cursos}">
+                                        <th scope="row" th:text="${c.id}"></th>
+                                        <td th:text="${c.nombre_Curso}"></td>
+                                        <td th:text="${c.Division}"></td>
 
+                                        <!-- Desde acá le paso el Curso.id al Controllador -->
+                                        <td><a class="btn btn-outline-success" th:href="@{/secciones/alumnos/} + ${c.id}"><i class="far fa-eye"></i> Alumnos</a></td>
+
+                                        <td><a class="btn btn-outline-info" th:href="@{/secciones/formulario_curso/} + ${c.id}"><i class="far fa-edit"></i> Editar</a></td>
+                                        <td><button type="button" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i> Borrar</button></td>
+                                    </tr>
+                                </tbody>
+                            </table> 
                         </div>
                         <div class="card-footer small text-muted">
-                           <a class="btn btn-outline-success" th:href="@{/secciones/formulario_calendario}"><i class="fas fa-plus"></i> Agregar Evento</a>
+                            Aquí la lista de cursos
                         </div>
                     </div>
 

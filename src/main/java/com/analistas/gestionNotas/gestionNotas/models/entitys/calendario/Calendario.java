@@ -27,8 +27,8 @@ import org.springframework.format.annotation.DateTimeFormat;
  * @author matia
  */
 @Entity
-@Table(name = "calendarios_de_Materias")
-public class calendario_de_Materia {
+@Table(name = "calendarios")
+public class Calendario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

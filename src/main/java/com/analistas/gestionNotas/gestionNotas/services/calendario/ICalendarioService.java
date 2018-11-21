@@ -5,7 +5,7 @@
  */
 package com.analistas.gestionNotas.gestionNotas.services.calendario;
 
-import com.analistas.gestionNotas.gestionNotas.models.entitys.calendario.calendario_de_Materia;
+import com.analistas.gestionNotas.gestionNotas.models.entitys.calendario.Calendario;
 import com.analistas.gestionNotas.gestionNotas.models.entitys.materia.Materia;
 import java.util.List;
 
@@ -15,6 +15,10 @@ import java.util.List;
  */
 public interface ICalendarioService {
 
-    public List<calendario_de_Materia> buscarPorMateria(Materia materia);
+    public List<Calendario> buscarPorMateria(Materia materia);
+    
+    public void save(Calendario calendario);
+    
+    public Calendario buscarPorId(int id);
 
 }

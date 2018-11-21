@@ -2,9 +2,9 @@ insert into divisiones(nombre_Division) values
 ('A'),
 ('B');
 
-insert into cursos(nombre_Curso, cantidad_Alumnos, fk_Cur_Div) values
-('3',13,1),
-('3',13,2);
+insert into cursos(nombre_Curso, fk_Cur_Div) values
+('3',1),
+('3',2);
 
 insert into profesores(nombre, apellido, dni, genero, fecha_Nacimiento) values
 ('Luisina', 'Espindola', '28374944', 'F', '05/04/1996');
@@ -39,21 +39,23 @@ insert into alumnos(nombre,apellido,dni,genero,fecha_Nacimiento,fk_Alu_Cur) valu
 ('Eugenia', 'Toledo', '25329324', 'F', '05/12/1996',2);
 
 insert into materias(nombre_Materia, fk_Mat_Pro) values
-('Informática I', 1);
+('Informática I', 1),
+('Informática II', 1);
 
-insert into calendarios_de_Materias(titulo, descripcion, fecha, fk_Cal_Mat) values
-('Inicio de Clases', 'Comienzo 1er Trimestre', '04/03/2019', 1);
+insert into calendarios(titulo, descripcion, fecha, fk_Cal_Mat) values
+('Inicio de Clases', 'Comienzo 1er Trimestre', '04/03/2019', 1),
+('Inicio de Clases', 'Comienzo 1er Trimestre', '04/03/2019', 2);
 
 
 select * from cursos;
 
-select * from alumnos;
+select * from alumnos order by alumnos.genero , alumnos.apellido;
 
 select * from materias;
 
 select * from profesores;
 
-select * from calendarios_de_Materias;
+select * from calendarios;
 
 select * from materias_alumnos;
 

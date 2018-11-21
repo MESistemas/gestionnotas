@@ -30,4 +30,16 @@ public class CursoServiceImpl implements ICursoService{
        return dao.findAll();
     }
     
+    @Override
+    @Transactional(readOnly = true)
+    public Curso buscarPorId(int id) {
+        return dao.findById(id).orElse(null);
+    }
+    
+    @Override
+    @Transactional
+    public void save(Curso curso) {
+        dao.save(curso);
+    }
+    
 }

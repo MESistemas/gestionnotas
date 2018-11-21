@@ -6,7 +6,7 @@
 package com.analistas.gestionNotas.gestionNotas.services.calendario;
 
 import com.analistas.gestionNotas.gestionNotas.dao.iCalendario.ICalendarioDao;
-import com.analistas.gestionNotas.gestionNotas.models.entitys.calendario.calendario_de_Materia;
+import com.analistas.gestionNotas.gestionNotas.models.entitys.calendario.Calendario;
 import com.analistas.gestionNotas.gestionNotas.models.entitys.materia.Materia;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +24,20 @@ public class CalendarioServiceImpl implements ICalendarioService{
     ICalendarioDao dao;
 
     @Override
-    public List<calendario_de_Materia> buscarPorMateria(Materia materia){
+    public List<Calendario> buscarPorMateria(Materia materia){
         return dao.buscarPorMateria(materia);
     }
     
+    @Override
+    @Transactional(readOnly = true)
+    public Calendario buscarPorId(int id) {
+        return dao.findById(id).orElse(null);
+    }
     
+    @Override
+    @Transactional
+    public void save(Calendario materia) {
+        dao.save(materia);
+    }
     
 }

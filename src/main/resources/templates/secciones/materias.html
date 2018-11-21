@@ -47,7 +47,7 @@
                         <span>Secciones</span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                        <a class="dropdown-item" th:href="@{/secciones/elegir_curso}"><i class="fas fa-chalkboard"></i> Cursos</a>
+                        <a class="dropdown-item" th:href="@{/secciones/cursos}"><i class="fas fa-chalkboard"></i> Cursos</a>
                         <a class="dropdown-item active" th:href="@{/secciones/materias}"><i class="fas fa-book"></i> Materias</a>
                         <a class="dropdown-item" href="login.html"><i class="far fa-calendar-alt"></i> Calendario</a>
                         <a class="dropdown-item" href="login.html"><i class="fas fa-archive"></i> Recursos</a>
@@ -85,7 +85,7 @@
                             Materias</div>
                         <div class="card-body">
 
-                            <table class="table table-sm table-hover table-responsive-md text-center">
+                            <table class="table table-sm table-hover table-responsive-md text-center table-bordered">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th scope="col">#</th>
@@ -103,13 +103,15 @@
                                         <!-- Desde acá le paso el Curso.id al Controllador -->
                                         <td><a class="btn btn-outline-success" th:href="@{/secciones/calendario/} + ${m.id}"><i class="far fa-eye"></i> Calendario</a></td>
 
-                                        <td><button type="button" class="btn btn-outline-info"><i class="far fa-edit"></i> Editar</button></td>
+                                        <td><a class="btn btn-outline-info" th:href="@{/secciones/formulario_materia/} + ${m.id}"><i class="far fa-edit"></i> Editar</a></td>
                                         <td><button type="button" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i> Borrar</button></td>
                                     </tr>
                                 </tbody>
                             </table> 
                         </div>
-                        <div class="card-footer small text-muted"></div>
+                        <div class="card-footer small text-muted">
+                            Aquí la lista de materias
+                        </div>
                     </div>
 
                 </div>

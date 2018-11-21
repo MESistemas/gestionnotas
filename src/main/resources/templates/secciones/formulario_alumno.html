@@ -47,7 +47,7 @@
                         <span>Secciones</span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                        <a class="dropdown-item" th:href="@{/secciones/elegir_curso}"><i class="fas fa-chalkboard"></i> Cursos</a>
+                        <a class="dropdown-item" th:href="@{/secciones/cursos}"><i class="fas fa-chalkboard"></i> Cursos</a>
                         <a class="dropdown-item active" th:href="@{/secciones/materias}"><i class="fas fa-book"></i> Materias</a>
                         <a class="dropdown-item" href="login.html"><i class="far fa-calendar-alt"></i> Calendario</a>
                         <a class="dropdown-item" href="login.html"><i class="fas fa-archive"></i> Recursos</a>
@@ -65,14 +65,17 @@
 
                 <div class="container-fluid">
 
-                    <!-- Breadcrumbs-->
+                   <!-- Breadcrumbs-->
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="#">Formulario Alumno</a>
+                            <a th:href="@{/secciones/cursos}">Cursos</a>
                         </li>
-                        <li class="breadcrumb-item active"></li>
+                        <li class="breadcrumb-item">
+                            <a th:href="@{/secciones/alumnos/} + ${curso.id}">Alumnos</a>
+                        </li>
+                        <li class="breadcrumb-item active">Formulario</li>
                     </ol>
-                    
+
                     <!-- Icon Cards -->
                     <div th:replace="index :: icon_cards">
 
@@ -81,48 +84,48 @@
                     <!-- DataTables Example -->
                     <div class="card mb-3">
                         <div class="card-header">
-                            <b></b></div>
+                            <b th:text="${titulo_card}"></b></div>
                         <div class="card-body">
-                            <form>
+                            <form th:action="@{/secciones/formulario_alumno}" th:object="${alumno}" method="post">
                                 <h5> <i class="far fa-clipboard"></i>  Datos del Alumno: </h5>
                                 <br>
                                 <div class="row">
                                     <div class="col">
                                         <i class="far fa-address-book"></i> Nombre: 
-                                        <input type="text" class="form-control" required>
+                                        <input type="text" class="form-control" th:field="*{nombre}" required>
                                     </div>
                                     <div class="col">
                                         <i class="fas fa-address-book"></i> Apellido: 
-                                        <input type="text" class="form-control" required>
+                                        <input type="text" class="form-control" th:field="*{apellido}" required>
                                     </div>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col">
                                         <i class="far fa-address-card"></i> DNI (Sin puntos): 
-                                        <input type="text" class="form-control" required>
+                                        <input type="text" class="form-control" th:field="*{dni}" required>
                                     </div>
                                     <div class="col">
                                         <i class="far fa-address-card"></i> Género (M) o (F): 
-                                        <input type="text" class="form-control" required>
+                                        <input type="text" class="form-control" th:field="*{genero}" required>
                                     </div>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col">
                                         <i class="far fa-calendar-alt"></i> Nacimiento (DD/MM/YYYY): 
-                                        <input type="text" class="form-control" required>
+                                        <input type="text" class="form-control"  th:field="*{fecha_Nacimiento}" required>
                                     </div>
                                     <div class="col">
                                         <i class="fas fa-chalkboard-teacher"></i> Curso: 
-                                        <input type="text" class="form-control" disabled>
+                                        <input type="text" class="form-control" th:value="${curso}" disabled>
                                     </div>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col">
-                                        <button type="submit" class="btn btn-success"> <i class="fas fa-plus"></i> Agregar</button>
-                                        <a class="btn btn-danger" th:href="@{/}"> <i class="fas fa-times"></i> Cancelar</a>
+                                        <button type="submit" class="btn btn-success"> <i class="fas fa-save"></i> Guardar </button>
+                                        <a class="btn btn-danger" th:href="@{/secciones/alumnos/} + ${curso.id}"> <i class="fas fa-times"></i> Cancelar</a>
                                     </div>
                                 </div>
                             </form>

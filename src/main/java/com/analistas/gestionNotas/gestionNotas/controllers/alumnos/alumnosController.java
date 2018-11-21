@@ -17,6 +17,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,11 +43,21 @@ public class alumnosController {
     @Autowired
     IAlumnoService servAlumno;
 
+    //Me permite guardar el curso actual en el que estoy agregando/modificando/borrando alumno
     private Curso curso;
 
-    //Acá es donde yo recibo el Curso.id que paso desde "elegir_curso"
+    @GetMapping({"/secciones/cursos"})
+    public String Elegir_Curso(Map<String, Object> m) {
+
+        List<Curso> listado = servCurso.buscarTodo();
+
+        m.put("cursos", listado);
+
+        return "/secciones/cursos";
+    }
+
     @RequestMapping(value = "/secciones/alumnos/{curso}", method = RequestMethod.GET)
-    public String listarPorCurso(Map<String, Object> m, @PathVariable("curso") Curso curso) {
+    public String Listar_Por_Curso(Map<String, Object> m, @PathVariable("curso") Curso curso) {
         List<Alumno> listado = servAlumno.buscarPorCurso(curso);
 
         this.curso = curso;
@@ -58,29 +69,19 @@ public class alumnosController {
         return "/secciones/alumnos";
     }
 
-    @GetMapping({"/secciones/elegir_curso"})
-    public String elegir_cursoController(Map<String, Object> m) {
-
-        List<Curso> listado = servCurso.buscarTodo();
-
-        m.put("cursos", listado);
-
-        return "/secciones/elegir_curso";
-    }
-
     @GetMapping("/secciones/busqueda_alumno_por_dni")
-    public String buscar(@RequestParam(name = "dni", required = false) String dni, Map m) {
+    public String Buscar_Alumno_Por_Dni(@RequestParam(name = "dni", required = false) String dni, Map m) {
 
         List<Alumno> listado = servAlumno.buscarPorDni(dni, curso);
-        
+
         String mensaje = "";
 
-        if(listado.isEmpty()){
+        if (listado.isEmpty()) {
             mensaje = "No se encontraron resultados...";
-        }else{
+        } else {
             mensaje = "Se ha encontrado: ";
         }
-        
+
         m.put("mensaje", mensaje);
         m.put("alumnos", listado);
         m.put("curso", curso.getId());
@@ -88,13 +89,36 @@ public class alumnosController {
 
         return "/secciones/alumnos";
     }
-    
+
+    //ABM Alumno
     @GetMapping("/secciones/formulario_alumno")
-    public String agregar(){
-        
+    public String Agregar_Alumno(Map m) {
+
+        Alumno alumno = new Alumno();
+
+        m.put("alumno", alumno);
+        m.put("curso", curso);
+
         return "/secciones/formulario_alumno";
     }
-    
-    
-    
+
+    @PostMapping("/secciones/formulario_alumno")
+    public String Guardar_Alumno(@Valid Alumno alumno) {
+        alumno.setCurso(curso);
+        servAlumno.save(alumno);
+        return "redirect:/secciones/alumnos/" + curso.getId();
+    }
+
+    @GetMapping({"/secciones/formulario_alumno/{id}"})
+    public String Editar_Alumno(@PathVariable(value = "id") int id, Map m) {
+        Alumno alumno = new Alumno();
+        alumno.setCurso(curso);
+        alumno = servAlumno.buscarPorId(id);
+
+        m.put("alumno", alumno);
+        m.put("curso", curso);
+
+        return "/secciones/formulario_alumno";
+    }
+
 }

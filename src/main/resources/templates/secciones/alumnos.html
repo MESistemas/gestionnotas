@@ -68,7 +68,10 @@
                     <!-- Breadcrumbs-->
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a th:href="@{/secciones/alumnos}">Alumnos</a>
+                            <a th:href="@{/secciones/cursos}">Cursos</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a th:href="@{/secciones/alumnos/} + ${curso}">Alumnos</a>
                         </li>
                         <li class="breadcrumb-item active">Lista de Alumnos</li>
                     </ol>
@@ -78,23 +81,7 @@
 
                     </div>
 
-                    <!-- ABM -->
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            <i class="far fa-plus-square"></i>
-                            Agregar Alumno
-                        </div>    
-                        <div class="card-body">
-                            <div class="table-responsive"> 
-
-                                <button type="button" class="btn btn-outline-success"><i class="fas fa-plus"></i> Agregar</button>
-
-                            </div>
-                        </div>
-                        <div class="card-footer small text-muted"></div>
-                    </div>
-
-                    <BR>
+                    
 
                     <!-- DataTables Example -->
                     <div class="card mb-3">
@@ -102,8 +89,8 @@
                             <i class="fas fa-graduation-cap"></i>
                             Lista de Alumnos <B th:text="${nombreCurso}">  </B> </div>
                         <div class="card-body">
-                            <div class="table-responsive"> 
-
+                           
+                                
                                 <form class="form-inline" action="post" th:action="@{/secciones/busqueda_alumno_por_dni}" method="get">
                                     <div class="form-group mb-2">
                                         <label><i class="far fa-address-card" style="margin-right: 5px;"></i> Buscar por Documento: </label>
@@ -116,8 +103,8 @@
                                 </form>     
 
                                 <b><span th:text="${mensaje}" id="mensaje" style="color:green;"></span></b>
-
-                                <table class="table table-sm table-hover table-responsive-md text-center">
+                                 <div class="table-responsive"> 
+                                <table class="table table-sm table-hover table-bordered table-responsive-md text-center">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th scope="col">Alumno</th>
@@ -136,18 +123,17 @@
                                             <td th:text="${a.genero}"></td>
                                             <td th:text="${a.fecha_Nacimiento}"></td>
                                             <td><button class="btn btn-outline-success"><i class="far fa-eye"></i> Detalles</button></td>
-                                            <td><button type="button" class="btn btn-outline-info"><i class="far fa-edit"></i> Editar</button></td>
+                                            <td><a class="btn btn-outline-info" th:href="@{/secciones/formulario_alumno/} + ${a.id}"><i class="far fa-edit"></i> Editar</a></td>
                                             <td><button type="button" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i> Borrar</button></td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                        <div class="card-footer small text-muted"></div>
+                        <div class="card-footer small text-muted">
+                            <a class="btn btn-outline-success" th:href="@{/secciones/formulario_alumno}"><i class="fas fa-plus"></i> Agregar Alumno</a>
+                        </div>
                     </div>
-
-
-
                 </div>
                 <!-- /.container-fluid -->
 

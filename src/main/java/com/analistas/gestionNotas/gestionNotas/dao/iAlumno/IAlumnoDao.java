@@ -18,7 +18,7 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface IAlumnoDao extends JpaRepository<Alumno, Integer> {
     
-    @Query("Select a from Alumno a where a.curso = ?1")
+    @Query("Select a from Alumno a where a.curso = ?1 ORDER BY a.genero, a.apellido")
     public List<Alumno> buscarPorCurso(Curso curso);
     
     @Query("Select a from Alumno a where a.dni = ?1 AND a.curso = ?2")

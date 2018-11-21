@@ -4,8 +4,7 @@ use gestionNotas;
 
 create table cursos(
     id int not null primary key auto_increment,
-    nombre_Curso varchar(1) not null,
-    cantidad_Alumnos int
+    nombre_Curso varchar(1) not null
 );
 
 create table divisiones(
@@ -69,7 +68,7 @@ create table materias(
     nombre_Materia varchar(25) not null
 );
 
-create table calendarios_de_Materias(
+create table calendarios(
 	id int not null primary key auto_increment,
     titulo varchar(20) not null,
     descripcion varchar(30) not null,
