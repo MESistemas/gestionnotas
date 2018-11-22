@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.analistas.gestionNotas.gestionNotas.controllers.calendario;
 
 import com.analistas.gestionNotas.gestionNotas.controllers.materias.materiasController;
@@ -25,7 +20,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
  * @author Matias
  */
 @Controller
-@SessionAttributes("Calendario")
+@SessionAttributes("calendario")
 public class calendariosController {
 
     @Autowired
@@ -40,9 +35,9 @@ public class calendariosController {
     @GetMapping({"secciones/calendario/{materia}"})
     public String Ver_Calendario_de_Materia_Elegida(Map m, @PathVariable("materia") Materia materia) {
 
-        this.materia = materia;
-
         List<Calendario> listado = servCalendario.buscarPorMateria(materia);
+        
+        this.materia = materia;
 
         m.put("calendarios", listado);
         m.put("materia", materia);
@@ -54,9 +49,9 @@ public class calendariosController {
     @GetMapping("/secciones/formulario_calendario")
     public String Agregar_Evento(Map m) {
 
-        Calendario evento = new Calendario();
+        Calendario calendario = new Calendario();
 
-        m.put("calendario", evento);
+        m.put("calendario", calendario);
         m.put("materia", materia);
 
         return "/secciones/formulario_calendario";
@@ -64,19 +59,22 @@ public class calendariosController {
 
     //BM Evento (Calendario de Materia)
     @PostMapping("/secciones/formulario_calendario")
-    public String Guardar_Alumno(@Valid Calendario calendario) {
+    public String Guardar_Evento(@Valid Calendario calendario) {
+        
+        calendario.setMateria(materia);
 
         servCalendario.save(calendario);
-        return "redirect:/secciones/formulario_calendario/";
+        return "redirect:/secciones/calendario/" + materia.getId();
     }
 
     @GetMapping({"/secciones/formulario_calendario/{id}"})
-    public String Editar_Alumno(@PathVariable(value = "id") int id, Map m) {
+    public String Editar_Evento(@PathVariable(value = "id") int id, Map m) {
         Calendario calendario = new Calendario();
-
+        calendario.setMateria(materia);
         calendario = servCalendario.buscarPorId(id);
 
         m.put("evento", calendario);
+        m.put("materia", materia);
 
         return "/secciones/formulario_calendario";
     }

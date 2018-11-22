@@ -95,10 +95,11 @@
                                             <div class="card-body">
                                                 <h5 class="card-title" th:text="${c.titulo}"></h5>
                                                 <p class="card-text" th:text="${c.descripcion}"></p>
-                                                <a href="#" class="btn btn-primary">Modificar</a>
+                                                <a th:href="@{/secciones/formulario_calendario/} + ${c.id}" class="btn btn-primary">Modificar</a>
                                                 <a href="#" class="btn btn-danger">Borrar</a>
                                             </div>
                                         </div>
+                                        <br>
                                     </div>
                                 </div>
                             </div>
