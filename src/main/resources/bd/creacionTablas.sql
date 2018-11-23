@@ -68,10 +68,10 @@ create table materias(
     nombre_Materia varchar(25) not null
 );
 
-create table calendarios(
+create table agendas(
 	id int not null primary key auto_increment,
     titulo varchar(20) not null,
-    descripcion varchar(30) not null,
+    descripcion varchar(100) not null,
     fecha varchar(10) not null
 );
 

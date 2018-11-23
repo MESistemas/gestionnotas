@@ -90,7 +90,7 @@
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Materia</th>
-                                        <th scope="col">Ver Calendario</th>
+                                        <th scope="col">Ver Agenda</th>
                                         <th scope="col">Editar</th>
                                         <th scope="col">Borrar</th>
                                     </tr>
@@ -101,7 +101,7 @@
                                         <td th:text="${m.nombre_Materia}"></td>
 
                                         <!-- Desde acá le paso el Curso.id al Controllador -->
-                                        <td><a class="btn btn-outline-success" th:href="@{/secciones/calendario/} + ${m.id}"><i class="far fa-eye"></i> Calendario</a></td>
+                                        <td><a class="btn btn-outline-success" th:href="@{/secciones/agendas/} + ${m.id}"><i class="far fa-eye"></i> Agenda</a></td>
 
                                         <td><a class="btn btn-outline-info" th:href="@{/secciones/formulario_materia/} + ${m.id}"><i class="far fa-edit"></i> Editar</a></td>
                                         <td><button type="button" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i> Borrar</button></td>
@@ -118,13 +118,9 @@
                 <!-- /.container-fluid -->
 
                 <!-- Sticky Footer -->
-                <footer class="sticky-footer">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>Todos los derechos reservados © ME-Sistemas 2018</span>
-                        </div>
-                    </div>
-                </footer>
+                <div th:replace="index :: footer">
+
+                </div>
 
             </div>
             <!-- /.content-wrapper -->

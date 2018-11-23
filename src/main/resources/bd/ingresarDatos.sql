@@ -41,7 +41,7 @@ insert into alumnos(nombre,apellido,dni,genero,fecha_Nacimiento,fk_Alu_Cur) valu
 insert into materias(nombre_Materia, fk_Mat_Pro) values
 ('Informática I', 1);
 
-insert into calendarios(titulo, descripcion, fecha, fk_Cal_Mat) values
+insert into agendas(titulo, descripcion, fecha, fk_Age_Mat) values
 ('Inicio de Clases', 'Comienzo 1er Trimestre', '04/03/2019', 1);
 
 

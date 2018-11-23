@@ -7,7 +7,7 @@ package com.analistas.gestionNotas.gestionNotas.models.entitys.materia;
 
 import com.analistas.gestionNotas.gestionNotas.models.entitys.MateriaAlumno.Materia_Alumno;
 import com.analistas.gestionNotas.gestionNotas.models.entitys.profesor.Profesor;
-import com.analistas.gestionNotas.gestionNotas.models.entitys.calendario.Calendario;
+import com.analistas.gestionNotas.gestionNotas.models.entitys.agenda.Agenda;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -42,9 +42,9 @@ public class Materia implements Serializable {
     private String nombre_Materia;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "materia")
-    private List<Calendario> calendarios;
+    private List<Agenda> calendarios;
 
-    private void addCalendario(Calendario calendarios) {
+    private void addCalendario(Agenda calendarios) {
         this.calendarios.add(calendarios);
     }
 
@@ -91,11 +91,11 @@ public class Materia implements Serializable {
         this.Materia_Alumno = Materia_Alumno;
     }
 
-    public List<Calendario> getCalendarios() {
+    public List<Agenda> getCalendarios() {
         return calendarios;
     }
 
-    public void setCalendarios(List<Calendario> calendarios) {
+    public void setCalendarios(List<Agenda> calendarios) {
         this.calendarios = calendarios;
     }
 

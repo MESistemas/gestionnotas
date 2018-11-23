@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.analistas.gestionNotas.gestionNotas.models.entitys.calendario;
+package com.analistas.gestionNotas.gestionNotas.models.entitys.agenda;
 
 import com.analistas.gestionNotas.gestionNotas.models.entitys.materia.Materia;
 import java.text.ParseException;
@@ -27,8 +27,8 @@ import org.springframework.format.annotation.DateTimeFormat;
  * @author matia
  */
 @Entity
-@Table(name = "calendarios")
-public class Calendario {
+@Table(name = "agendas")
+public class Agenda {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,7 +48,7 @@ public class Calendario {
     private String fecha;
 
     @ManyToOne
-    @JoinColumn(name = "fk_Cal_Mat", referencedColumnName = "id")
+    @JoinColumn(name = "fk_Age_Mat", referencedColumnName = "id")
     private Materia materia;
 
     public int getId() {

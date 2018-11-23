@@ -70,7 +70,7 @@
                         <li class="breadcrumb-item">
                             <a th:href="@{/secciones/materias}">Materias</a>
                         </li>
-                        <li class="breadcrumb-item active">Formulario</li>
+                        <li class="breadcrumb-item active">Agenda</li>
                     </ol>
 
                     <!-- Icon Cards -->
@@ -79,57 +79,44 @@
                     </div>
 
                     <!-- DataTables Example -->
-                    <div class="card mb-3">
+                    <div class="card mb-1">
                         <div class="card-header">
-                            <b ></b></div>
+                            <i class="far fa-calendar-alt"></i>
+                            Agenda de <b th:text="${materia}"></b></div>
                         <div class="card-body">
-                            <form th:action="@{/secciones/formulario_calendario}" th:object="${calendario}" method="post">
-                                <h5> <i class="far fa-clipboard"></i>  Datos del Evento </h5>
-                                <br>
+
+                            <div class="container">
                                 <div class="row">
-                                    <div class="col">
-                                        <i class="far fa-calendar"></i> Titulo: 
-                                        <input type="text" class="form-control" th:field="*{titulo}" required>
-                                    </div>
-                                    <div class="col">
-                                        <i class="far fa-calendar-alt"></i> Fecha: 
-                                        <input type="text" class="form-control" th:field="*{fecha}" required>
+                                    <div class="col-sm-12 col-md-6" th:each="c : ${agendas}">
+                                        <div class="card text-center">
+                                            <div class="card-header">
+                                                <i class="fas fa-calendar-alt"></i> <b th:text="${c.fecha}"></b>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title" th:text="${c.titulo}"></h5>
+                                                <p class="card-text" th:text="${c.descripcion}"></p>
+                                                <a th:href="@{/secciones/formulario_agenda/} + ${c.id}" class="btn btn-primary">Modificar</a>
+                                                <a href="#" class="btn btn-danger">Borrar</a>
+                                            </div>
+                                        </div>
+                                        <br>
                                     </div>
                                 </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col">
-                                            <i class="far fa-calendar-plus"></i> Descripción: 
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" th:field="*{descripcion}"></textarea>
-                                    </div>
-                                     <div class="col">
-                                        <i class="fas fa-book"></i> Materia: 
-                                        <input type="text" class="form-control" th:value="${materia}" disabled>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col">
-                                        <button type="submit" class="btn btn-success"> <i class="fas fa-save"></i> Guardar </button>
-                                        <a class="btn btn-danger" th:href="@{/secciones/materias}"> <i class="fas fa-times"></i> Cancelar</a>
-                                    </div>
-                                </div>
-                            </form>
+                            </div>
+
                         </div>
-                        <div class="card-footer small text-muted"></div>
+                        <div class="card-footer small text-muted">
+                            <a class="btn btn-outline-success" th:href="@{/secciones/formulario_agenda}"><i class="fas fa-plus"></i> Agendar</a>
+                        </div>
                     </div>
 
                 </div>
                 <!-- /.container-fluid -->
 
                 <!-- Sticky Footer -->
-                <footer class="sticky-footer">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>Copyright © Your Website 2018</span>
-                        </div>
-                    </div>
-                </footer>
+                <div th:replace="index :: footer">
+
+                </div>
 
             </div>
             <!-- /.content-wrapper -->

@@ -3,41 +3,42 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.analistas.gestionNotas.gestionNotas.services.calendario;
+package com.analistas.gestionNotas.gestionNotas.services.agenda;
 
-import com.analistas.gestionNotas.gestionNotas.dao.iCalendario.ICalendarioDao;
-import com.analistas.gestionNotas.gestionNotas.models.entitys.calendario.Calendario;
+import com.analistas.gestionNotas.gestionNotas.models.entitys.agenda.Agenda;
 import com.analistas.gestionNotas.gestionNotas.models.entitys.materia.Materia;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.analistas.gestionNotas.gestionNotas.dao.iAgenda.IAgendaDao;
 
 /**
  *
  * @author Matias
  */
 @Service
-public class CalendarioServiceImpl implements ICalendarioService{
+public class AgendaServiceImpl implements IAgendaService{
     
     @Autowired
-    ICalendarioDao dao;
+    IAgendaDao dao;
 
     @Override
-    public List<Calendario> buscarPorMateria(Materia materia){
+     @Transactional(readOnly = true)
+    public List<Agenda> buscarPorMateria(Materia materia){
         return dao.buscarPorMateria(materia);
     }
     
     @Override
     @Transactional(readOnly = true)
-    public Calendario buscarPorId(int id) {
+    public Agenda buscarPorId(int id) {
         return dao.findById(id).orElse(null);
     }
     
     @Override
     @Transactional
-    public void save(Calendario materia) {
-        dao.save(materia);
+    public void save(Agenda agenda) {
+        dao.save(agenda);
     }
     
 }

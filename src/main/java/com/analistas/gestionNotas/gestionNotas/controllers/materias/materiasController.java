@@ -5,9 +5,8 @@
  */
 package com.analistas.gestionNotas.gestionNotas.controllers.materias;
 
-import com.analistas.gestionNotas.gestionNotas.models.entitys.calendario.Calendario;
+import com.analistas.gestionNotas.gestionNotas.models.entitys.agenda.Agenda;
 import com.analistas.gestionNotas.gestionNotas.models.entitys.materia.Materia;
-import com.analistas.gestionNotas.gestionNotas.services.calendario.ICalendarioService;
 import com.analistas.gestionNotas.gestionNotas.services.materia.IMateriaService;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import com.analistas.gestionNotas.gestionNotas.services.agenda.IAgendaService;
 
 /**
  *

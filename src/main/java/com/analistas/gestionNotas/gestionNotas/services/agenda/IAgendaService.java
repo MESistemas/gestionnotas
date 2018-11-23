@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.analistas.gestionNotas.gestionNotas.services.calendario;
+package com.analistas.gestionNotas.gestionNotas.services.agenda;
 
-import com.analistas.gestionNotas.gestionNotas.models.entitys.calendario.Calendario;
+import com.analistas.gestionNotas.gestionNotas.models.entitys.agenda.Agenda;
 import com.analistas.gestionNotas.gestionNotas.models.entitys.materia.Materia;
 import java.util.List;
 
@@ -13,12 +13,12 @@ import java.util.List;
  *
  * @author Matias
  */
-public interface ICalendarioService {
+public interface IAgendaService {
 
-    public List<Calendario> buscarPorMateria(Materia materia);
+    public List<Agenda> buscarPorMateria(Materia materia);
     
-    public void save(Calendario calendario);
+    public void save(Agenda agenda);
     
-    public Calendario buscarPorId(int id);
+    public Agenda buscarPorId(int id);
 
 }

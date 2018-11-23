@@ -1,9 +1,8 @@
-package com.analistas.gestionNotas.gestionNotas.controllers.calendario;
+package com.analistas.gestionNotas.gestionNotas.controllers.agenda;
 
 import com.analistas.gestionNotas.gestionNotas.controllers.materias.materiasController;
-import com.analistas.gestionNotas.gestionNotas.models.entitys.calendario.Calendario;
+import com.analistas.gestionNotas.gestionNotas.models.entitys.agenda.Agenda;
 import com.analistas.gestionNotas.gestionNotas.models.entitys.materia.Materia;
-import com.analistas.gestionNotas.gestionNotas.services.calendario.ICalendarioService;
 import com.analistas.gestionNotas.gestionNotas.services.materia.IMateriaService;
 import java.util.List;
 import java.util.Map;
@@ -14,17 +13,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import com.analistas.gestionNotas.gestionNotas.services.agenda.IAgendaService;
 
 /**
  *
  * @author Matias
  */
 @Controller
-@SessionAttributes("calendario")
-public class calendariosController {
+@SessionAttributes("agenda")
+public class agendasController {
 
     @Autowired
-    ICalendarioService servCalendario;
+    IAgendaService servAgenda;
 
     @Autowired
     IMateriaService servMateria;
@@ -32,51 +32,51 @@ public class calendariosController {
     private Materia materia;
     
 
-    @GetMapping({"secciones/calendario/{materia}"})
+    @GetMapping({"secciones/agendas/{materia}"})
     public String Ver_Calendario_de_Materia_Elegida(Map m, @PathVariable("materia") Materia materia) {
 
-        List<Calendario> listado = servCalendario.buscarPorMateria(materia);
+        List<Agenda> listado = servAgenda.buscarPorMateria(materia);
         
         this.materia = materia;
 
-        m.put("calendarios", listado);
+        m.put("agendas", listado);
         m.put("materia", materia);
 
-        return "secciones/calendario";
+        return "secciones/agendas";
     }
 
     //A Evento (Calendario de Materia)
-    @GetMapping("/secciones/formulario_calendario")
+    @GetMapping("/secciones/formulario_agenda")
     public String Agregar_Evento(Map m) {
 
-        Calendario calendario = new Calendario();
+        Agenda agenda = new Agenda();
 
-        m.put("calendario", calendario);
+        m.put("agenda", agenda);
         m.put("materia", materia);
 
-        return "/secciones/formulario_calendario";
+        return "/secciones/formulario_agenda";
     }
 
     //BM Evento (Calendario de Materia)
-    @PostMapping("/secciones/formulario_calendario")
-    public String Guardar_Evento(@Valid Calendario calendario) {
+    @PostMapping("/secciones/formulario_agenda")
+    public String Guardar_Evento(@Valid Agenda agenda) {
         
-        calendario.setMateria(materia);
+        agenda.setMateria(materia);
 
-        servCalendario.save(calendario);
-        return "redirect:/secciones/calendario/" + materia.getId();
+        servAgenda.save(agenda);
+        return "redirect:/secciones/agendas/" + materia.getId();
     }
 
-    @GetMapping({"/secciones/formulario_calendario/{id}"})
+    @GetMapping({"/secciones/formulario_agenda/{id}"})
     public String Editar_Evento(@PathVariable(value = "id") int id, Map m) {
-        Calendario calendario = new Calendario();
-        calendario.setMateria(materia);
-        calendario = servCalendario.buscarPorId(id);
+        Agenda agenda = new Agenda();
+        agenda.setMateria(materia);
+        agenda = servAgenda.buscarPorId(id);
 
-        m.put("evento", calendario);
+        m.put("agenda", agenda);
         m.put("materia", materia);
 
-        return "/secciones/formulario_calendario";
+        return "/secciones/formulario_agenda";
     }
 
 }

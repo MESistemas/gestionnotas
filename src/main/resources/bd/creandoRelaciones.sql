@@ -26,8 +26,8 @@ alter table materias add column fk_Mat_Pro int null;
 alter table materias add constraint fk_Mat_Pro foreign key (fk_Mat_Pro)
 references profesores(id) on delete cascade;
 
-alter table calendarios add column fk_Cal_Mat int null;
-alter table calendarios add constraint fk_Cal_Mat foreign key (fk_Cal_Mat)
+alter table agendas add column fk_Age_Mat int null;
+alter table agendas add constraint fk_Age_Mat foreign key (fk_Age_Mat)
 references materias(id) on delete cascade;
 
 

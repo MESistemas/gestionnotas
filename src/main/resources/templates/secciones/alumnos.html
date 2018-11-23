@@ -81,7 +81,7 @@
 
                     </div>
 
-                    
+
 
                     <!-- DataTables Example -->
                     <div class="card mb-3">
@@ -89,21 +89,21 @@
                             <i class="fas fa-graduation-cap"></i>
                             Lista de Alumnos <B th:text="${nombreCurso}">  </B> </div>
                         <div class="card-body">
-                           
-                                
-                                <form class="form-inline" action="post" th:action="@{/secciones/busqueda_alumno_por_dni}" method="get">
-                                    <div class="form-group mb-2">
-                                        <label><i class="far fa-address-card" style="margin-right: 5px;"></i> Buscar por Documento: </label>
-                                    </div>
-                                    <div class="form-group mx-sm-3 mb-2">
-                                        <input type="search" name="dni" class="form-control" required>
-                                    </div>
-                                    <button type="submit" class="btn btn-success mb-2" style="margin-right: 5px;"><i class="fas fa-search"></i></button>
-                                    <a class="btn btn-primary mb-2" th:href="@{/secciones/alumnos/} + ${curso}"><i class="fas fa-redo"></i></a>
-                                </form>     
 
-                                <b><span th:text="${mensaje}" id="mensaje" style="color:green;"></span></b>
-                                 <div class="table-responsive"> 
+
+                            <form class="form-inline" action="post" th:action="@{/secciones/busqueda_alumno_por_dni}" method="get">
+                                <div class="form-group mb-2">
+                                    <label><i class="far fa-address-card" style="margin-right: 5px;"></i> Buscar por Documento: </label>
+                                </div>
+                                <div class="form-group mx-sm-3 mb-2">
+                                    <input type="search" name="dni" class="form-control" required>
+                                </div>
+                                <button type="submit" class="btn btn-success mb-2" style="margin-right: 5px;"><i class="fas fa-search"></i></button>
+                                <a class="btn btn-primary mb-2" th:href="@{/secciones/alumnos/} + ${curso}"><i class="fas fa-redo"></i></a>
+                            </form>     
+
+                            <b><span th:text="${mensaje}" id="mensaje" style="color:green;"></span></b>
+                            <div class="table-responsive"> 
                                 <table class="table table-sm table-hover table-bordered table-responsive-md text-center">
                                     <thead class="thead-dark">
                                         <tr>
@@ -138,13 +138,9 @@
                 <!-- /.container-fluid -->
 
                 <!-- Sticky Footer -->
-                <footer class="sticky-footer">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>Todos los derechos reservados © ME-Sistemas 2018</span>
-                        </div>
-                    </div>
-                </footer>
+                <div th:replace="index :: footer">
+
+                </div>
 
             </div>
             <!-- /.content-wrapper -->
