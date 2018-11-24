@@ -65,7 +65,7 @@
 
                 <div class="container-fluid">
 
-                   <!-- Breadcrumbs-->
+                    <!-- Breadcrumbs-->
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
                             <a th:href="@{/secciones/cursos}">Cursos</a>
@@ -106,8 +106,14 @@
                                         <input type="text" class="form-control" th:field="*{dni}" required>
                                     </div>
                                     <div class="col">
-                                        <i class="far fa-address-card"></i> Género (M) o (F): 
-                                        <input type="text" class="form-control" th:field="*{genero}" required>
+                                        <i class="far fa-address-card"></i> Género: 
+                                        <BR>
+                                        <div class="form-check form-check-inline">
+                                            <i class="fas fa-mars"></i>
+                                            <span th:if="${alumno.genero == 'M'}" style="margin-right:5px;"></span>
+                                            <i class="fas fa-venus"></i>
+                                            <span th:if="${alumno.genero == 'M'}" th:unless="${alumno.genero == 'F'}" name="genero" value="F"></span>
+                                        </div>
                                     </div>
                                 </div>
                                 <br>

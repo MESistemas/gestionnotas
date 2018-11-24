@@ -92,7 +92,7 @@ public class alumnosController {
 
     //ABM Alumno
     @GetMapping("/secciones/formulario_alumno")
-    public String Agregar_Alumno(Map m) {
+    public String Agregar_Alumno(Map m, @RequestParam(name = "genero", required = false) String genero) {
 
         Alumno alumno = new Alumno();
 
